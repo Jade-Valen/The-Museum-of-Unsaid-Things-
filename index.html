@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Museum of Unsaid Things</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #101510;
+    color: #e8dfc9;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+header {
+    text-align: center;
+    padding: 75px 20px;
+    background: linear-gradient(#101510dd, #101510),
+    url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1400');
+    background-size: cover;
+    background-position: center;
+}
+
+header p {
+    color: #b49a62;
+    letter-spacing: 5px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 7vw, 75px);
+    font-weight: 400;
+    color: #d7bd83;
+}
+
+header h2 {
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 20px;
+    font-size: 21px;
+}
+
+.enter {
+    margin-top: 35px;
+    padding: 13px 35px;
+    border: 1px solid #b49a62;
+    color: #d7bd83;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.enter:hover {
+    background: #b49a62;
+    color: #101510;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 20px;
+    border-top: 1px solid #51452e;
+    border-bottom: 1px solid #51452e;
+}
+
+nav a {
+    color: #c7b58c;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+nav a:hover {
+    color: white;
+}
+
+section {
+    padding: 65px 8%;
+    text-align: center;
+    scroll-margin-top: 20px;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: #d7bd83;
+    margin-bottom: 15px;
+}
+
+.description {
+    color: #aaa18c;
+    font-size: 19px;
+    margin-bottom: 35px;
+}
+
+.rooms {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
+
+.room {
+    border: 1px solid #655538;
+    background: #192019;
+    padding: 30px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.room:hover {
+    transform: translateY(-7px);
+    background: #242b20;
+    border-color: #c5a66a;
+}
+
+.room .symbol {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.room h3 {
+    font-family: 'Playfair Display', serif;
+    color: #d7bd83;
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.room p {
+    font-size: 17px;
+    color: #b5ad9c;
+}
+
+.exhibit {
+    display: none;
+    background: #e7dcc1;
+    color: #28251d;
+    padding: 35px;
+    max-width: 650px;
+    margin: 35px auto 0;
+    text-align: left;
+    border: 5px double #9a8051;
+    animation: appear 0.5s ease;
+}
+
+.exhibit h3 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 15px;
+    font-size: 26px;
+}
+
+.exhibit p {
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+@keyframes appear {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.random-btn {
+    padding: 12px 25px;
+    background: #b49a62;
+    border: none;
+    color: #101510;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 18px;
+    margin-top: 25px;
+}
+
+form {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, textarea {
+    padding: 14px;
+    background: #1b231c;
+    border: 1px solid #66563b;
+    color: #eee4d0;
+    font-family: inherit;
+    font-size: 17px;
+}
+
+textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+form button {
+    padding: 13px;
+    background: #b49a62;
+    border: none;
+    font-family: inherit;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#entries {
+    max-width: 650px;
+    margin: 30px auto;
+}
+
+.entry {
+    background: #1b231c;
+    border-left: 3px solid #b49a62;
+    padding: 20px;
+    margin: 15px 0;
+    text-align: left;
+    font-size: 19px;
+}
+
+footer {
+    text-align: center;
+    padding: 35px 15px;
+    border-top: 1px solid #51452e;
+    color: #9e9279;
+    font-size: 17px;
+}
+
+@media(max-width: 600px) {
+    header { padding: 60px 15px; }
+    nav { gap: 15px; }
+    section { padding: 50px 6%; }
+}
+</style>
+</head>
+
+<body>
+
+<header id="home">
+    <p>EST. IN THE SILENCE</p>
+    <h1>The Museum of<br>Unsaid Things</h1>
+    <h2>"Some things are never spoken, yet never forgotten."</h2>
+    <button class="enter" onclick="document.getElementById('museum').scrollIntoView({behavior:'smooth'})">
+        Enter the Museum →
+    </button>
+</header>
+
+<nav>
+    <a href="#home">Entrance</a>
+    <a href="#museum">Exhibitions</a>
+    <a href="#random">Discover</a>
+    <a href="#guestbook">Guestbook</a>
+</nav>
+
+<section id="museum">
+    <h2 class="section-title">The Exhibition Rooms</h2>
+    <p class="description">Every room holds a different kind of silence.</p>
+
+    <div class="rooms">
+
+        <div class="room" onclick="showExhibit('letters')">
+            <div class="symbol">✉</div>
+            <h3>Unsent Letters</h3>
+            <p>Words written but never delivered.</p>
+        </div>
+
+        <div class="room" onclick="showExhibit('friendship')">
+            <div class="symbol">❀</div>
+            <h3>Lost Friendships</h3>
+            <p>People who became memories.</p>
+        </div>
+
+        <div class="room" onclick="showExhibit('words')">
+            <div class="symbol">⌛</div>
+            <h3>Unspoken Words</h3>
+            <p>Things we wished we had said.</p>
+        </div>
+
+        <div class="room" onclick="showExhibit('poetry')">
+            <div class="symbol">📜</div>
+            <h3>Poetry Archive</h3>
+            <p>Emotions preserved in words.</p>
+        </div>
+
+        <div class="room" onclick="showExhibit('dreams')">
+            <div class="symbol">☾</div>
+            <h3>Forgotten Dreams</h3>
+            <p>Dreams left somewhere behind.</p>
+        </div>
+
+        <div class="room" onclick="showExhibit('confessions')">
+            <div class="symbol">🗝</div>
+            <h3>Hidden Thoughts</h3>
+            <p>Stories waiting to be heard.</p>
+        </div>
+
+    </div>
+
+    <div class="exhibit" id="exhibit">
+        <h3 id="exhibitTitle"></h3>
+        <p id="exhibitText"></p>
+    </div>
+</section>
+
+<section id="random">
+    <h2 class="section-title">A Random Exhibit</h2>
+    <p class="description">Not every story needs to be searched for.</p>
+    <div class="exhibit" id="randomExhibit" style="display:block;text-align:center;">
+        <h3 id="randomTitle">The Forgotten Note</h3>
+        <p id="randomText">Somewhere between wanting to speak and choosing silence, a thousand words were lost.</p>
+    </div>
+    <button class="random-btn" onclick="randomStory()">Discover Another Story ↗</button>
+</section>
+
+<section id="guestbook">
+    <h2 class="section-title">The Guestbook</h2>
+    <p class="description">Leave a little piece of yourself behind.</p>
+
+    <form onsubmit="addEntry(event)">
+        <input type="text" id="visitorName" placeholder="Your name (optional)">
+        <textarea id="visitorMessage" placeholder="What would you like to leave behind?" required></textarea>
+        <button type="submit">Leave Your Words</button>
+    </form>
+
+    <div id="entries"></div>
+</section>
+
+<footer>
+    <p>THE MUSEUM OF UNSAID THINGS</p>
+    <p>Some stories deserve a place to exist.</p>
+    <p>© 2026 | A Museum of Memories</p>
+</footer>
+
+<script>
+
+const exhibits = {
+    letters: {
+        title: "The Letter That Never Left",
+        text: "Dear you, I wonder if you ever think about the conversations we never finished. I had so much more to say, but perhaps silence became our final language."
+    },
+
+    friendship: {
+        title: "A Friendship in Pieces",
+        text: "We promised to stay. We promised to never become strangers. Yet somehow, the person who once knew everything about me became someone I barely know."
+    },
+
+    words: {
+        title: "Words Left Behind",
+        text: "I wanted to tell you that you mattered. That your presence made ordinary days beautiful. But the moment passed, and the words stayed with me."
+    },
+
+    poetry: {
+        title: "An Unfinished Poem",
+        text: "I collected moments like fallen leaves, kept memories like fragile glass, and wrote about things that were never meant to last."
+    },
+
+    dreams: {
+        title: "The Dream We Abandoned",
+        text: "Once, we imagined a future so vividly that it almost felt real. Time passed, life changed, and that dream became a quiet visitor in our memories."
+    },
+
+    confessions: {
+        title: "Behind Closed Doors",
+        text: "Sometimes the loudest thoughts are the ones we never share. Not because they are unimportant, but because we cannot find the right words."
+    }
+};
+
+function showExhibit(type) {
+    const exhibit = exhibits[type];
+
+    document.getElementById("exhibitTitle").textContent = exhibit.title;
+    document.getElementById("exhibitText").textContent = exhibit.text;
+
+    const box = document.getElementById("exhibit");
+    box.style.display = "block";
+
+    box.scrollIntoView({behavior: "smooth", block: "center"});
+}
+
+const stories = [
+    {
+        title: "The Empty Chair",
+        text: "Some places remain familiar even after the people who made them special have left."
+    },
+    {
+        title: "The Last Conversation",
+        text: "We didn't know it was our last conversation. Perhaps that is why ordinary goodbyes are so difficult."
+    },
+    {
+        title: "A Forgotten Dream",
+        text: "There was a version of me who believed the impossible was possible. I hope that version is still somewhere inside me."
+    },
+    {
+        title: "The Unsent Apology",
+        text: "I am sorry for the things I couldn't explain and the moments I didn't understand."
+    }
+];
+
+function randomStory() {
+    const story = stories[Math.floor(Math.random() * stories.length)];
+
+    document.getElementById("randomTitle").textContent = story.title;
+    document.getElementById("randomText").textContent = story.text;
+}
+
+function addEntry(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("visitorName").value.trim() || "Anonymous";
+    const message = document.getElementById("visitorMessage").value.trim();
+
+    if (!message) return;
+
+    const entry = document.createElement("div");
+    entry.className = "entry";
+
+    const heading = document.createElement("strong");
+    heading.textContent = name;
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = message;
+
+    entry.appendChild(heading);
+    entry.appendChild(paragraph);
+
+    document.getElementById("entries").prepend(entry);
+
+    document.getElementById("visitorName").value = "";
+    document.getElementById("visitorMessage").value = "";
+}
+
+</script>
+
+</body>
+</html>
